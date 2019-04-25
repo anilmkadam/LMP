@@ -1,0 +1,33 @@
+<% if current_user.role == 'admin' %>
+<div class="container-fluid">
+    <hr/>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action By</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% @leave.each do |leave| %>
+          <tr>
+            <th scope="row"><%= leave.user_id %></th>
+            <td><%= " #{leave.user.firstname} #{leave.user.lastname} " %></td>
+            <td><%= leave.start_date %></td>
+            <td><%= leave.end_date %></td>
+            <td><%= leave.status %></td>
+            <% if leave.status == 'pending' %>
+                <td>-</td>
+            <% else %>
+                <td><%= leave.email %></td>
+            <% end %>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+</div>
+<% end %>    

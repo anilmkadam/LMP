@@ -1,0 +1,11 @@
+<%
+    prop = get_image_links
+%>
+      
+    <% if current_user.role == 'admin' %>
+      <%= react_component('NavbarAdmin', logoUrl: prop[:logoUrl], user: current_user.firstname) %>
+    <% else %>
+    <%= react_component('NavbarUser', logoUrl: prop[:logoUrl], user: current_user.firstname) %>
+    <% end %>
+    
+

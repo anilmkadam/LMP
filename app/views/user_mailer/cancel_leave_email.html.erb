@@ -1,0 +1,8 @@
+<p>
+    Leave canceled by <b><%= "#{User.find(@leave.user_id).firstname} #{User.find(@leave.user_id).lastname}" %></b><br>
+    <b>Subject:&nbsp;</b><%= @leave.subject %><br>
+    <b>Description:&nbsp;</b><%= @leave.description %><br>
+    <b>Start Date:&nbsp;</b><%= @leave.start_date %><br>
+    <b>End Date:&nbsp;</b><%= @leave.end_date %><br>
+    <a href="http://192.168.0.104:3000/" class="btn btn-primary">Go to Dashboard</a>
+</p>

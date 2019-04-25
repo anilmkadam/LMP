@@ -1,0 +1,99 @@
+<div class="container-fluid">
+        <% if current_user.role != 'admin' %>
+        <span class="span-flex-display">Leave Remaining : <b><%= @user.leave_count %></b></span>
+        <% end %>
+    <% if current_user.role == 'admin' %>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Leave Request</li>
+        </ol>
+    </nav>
+    <div style="display: flex; flex-wrap: wrap;">
+    <% @leave.each do |leave| %>
+        <% if leave.status == 'pending' %>
+        <div class="card" style="width: 18rem; justify-content: flex-end;">
+            <div class="card-body">
+                <h5 class="card-title">ID : <%= leave.user_id %><br> Name: <%= " #{leave.user.firstname} #{leave.user.lastname} "%></h5>
+
+                <h6 class="card-subtitle mb-2 text-muted"><%= leave.subject %></h6>
+                <p class="card-text">
+                    <%= leave.description %><br>
+                    <h6>Start Date : <%= leave.start_date.strftime("%a, %d %b %Y") %></h6>
+                    <h6>End Date : <%= leave.end_date.strftime("%a, %d %b %Y") %></h6>
+                </p>
+               <form class="leaveApprovalForm">
+                    <input class="token" type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                   <button type="submit" class="btn btn-primary" data-id="<%= leave.id %>" data-type="approve">Approve</button>
+                   <button type="submit" class="btn btn-danger" data-id="<%= leave.id %>" data-type="reject">Reject</button>
+               </form>
+                <hr />
+            </div>
+            
+        </div>
+        <% end %>
+        <% end %>
+    </div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">Approved Leaves</li>
+            </ol>
+        </nav>
+        <div style="display: flex; flex-wrap: wrap;">
+        <% @leave.each do |leave| %>
+        <% if leave.status == 'approved' %>
+        <div class="card" style="width: 18rem; margin: 10px;">
+            <div class="card-body">
+                    <form class="leaveExtendForm">
+                <h5 class="card-title">Name: <%= " #{leave.user.firstname} #{leave.user.lastname} "%></h5>
+
+                <h6 class="card-subtitle mb-2 text-muted"><%= leave.subject %></h6>
+                <p class="card-text">
+                    <%= leave.description %><br>
+                    <h6>Start Date : <%= leave.start_date.strftime("%a, %d %b %Y") %></h6>
+                    <h6>End Date :<input class="end-date" type="text" value="<%= leave.end_date.strftime("%a, %d %b %Y") %>"></h6>
+                </p>
+               
+                    <input class="token" type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                   <button type="submit" class="btn btn-info" data-id="<%= leave.id %>" data-type="update">Update</button>
+               </form>
+                <hr />
+            </div>
+            
+        </div>
+        <% end %>
+        <% end %>
+    </div>
+    <div class="col-lg-8">
+        <h5>Stat : </h5>
+            <%= column_chart Leave.group_by_day_of_week(:start_date, format: "%a").count %>
+    </div>
+        <% else %>
+        <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item active" aria-current="page">On Leave   </li>
+                </ol>
+              </nav>
+     <div style="display: flex; flex-wrap: wrap;">
+        <% @leave.each do |leave| %>
+        <% if leave.status == 'approved' %>
+        <div class="card" style="width: 18rem; margin: 10px;">
+            <div class="card-body">
+                <h5 class="card-title">Name: <%= " #{leave.user.firstname} #{leave.user.lastname} "%></h5>
+
+                <h6 class="card-subtitle mb-2 text-muted"><%= leave.subject %></h6>
+                <p class="card-text">
+                    <%= leave.description %><br>
+                    <h6>Start Date : <%= leave.start_date.strftime("%a, %d %b %Y") %></h6>
+                    <h6>End Date : <%= leave.end_date.strftime("%a, %d %b %Y") %></h6>
+                </p>
+               
+                <hr />
+            </div>
+            
+        </div>
+        <% end %>
+        <% end %>
+        <% end %>
+        
+    </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col col-lg-5">
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Add User</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">add user role</h6>
+                    <form action="/registration" method="POST" name="data" id="data">
+                        <div class="form-group">
+                                <label>Email</label>
+                                <input type="text" class="form-control" id="email" name="email" placeholder="email" />
+                        </div>
+                        <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="password" />
+                                <small> Set static password for the user. </small>
+                        </div>
+                        <div class="form-group">
+                                <label>Role</label>
+                                <select class="form-control" name="role">
+                                  <option value="admin">Admin</option>
+                                  <option value="user">Employee</option>
+                                </select>
+                        </div>
+                        
+                        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                        <input type="submit" class="btn btn-primary" name="submit" />
+                    </form>
+                </div>
+              </div>
+            </div>
+              <div class="col col-lg-5">
+              <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Change User</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">change user role</h6>
+                      <form action="/registration/change_role" method="POST" name="data" id="data">
+                        <div class="form-group">
+                            <label>Select User</label>
+                            <select class="form-control" name="email">
+                              <% User.all.each do |user| %>
+                              <% if user != current_user %>
+                              <option value="<%= user.email %>"><%= user.email %></option>
+                              <% end %>
+                              <% end %>
+                            </select>
+                        </div>
+                          <div class="form-group">
+                                  <label>Role</label>
+                                  <select class="form-control" name="role">
+                                    <option value="admin">Admin</option>
+                                    <option value="user">Employee</option>
+                                  </select>
+                                </div>
+                          
+                          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                          <input type="submit" class="btn btn-primary" name="submit" />
+                      </form>
+                  </div>
+                </div>
+        </div>
+    </div>
+</div>

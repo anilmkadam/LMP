@@ -1,0 +1,82 @@
+<div class="container">
+  <div id="request-loader" class="request-loader">
+    <img src="<%= image_path("loader.gif"); %>" alt="loader logo">
+  </div>
+    <div class="leave-form">
+            <form action="/leave" method="POST" name="leave">
+                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                <div class="row">
+                  <div class="col-md-6 col-lg-6 col-sm-12">
+                    <div class="form-group">
+                      <label>Leave Type</label>
+                      <select class="form-control" name="leave_type">
+                        <option>Causual</option>
+                        <option>PTO</option>
+                        <option>MISC</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-lg-6 col-sm-12">
+                    <div class="form-group">
+                      <label>Subject</label>
+                      <input type="text" class="form-control" placeholder="Subject" name="subject">
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="form-group">
+                      <label for="exampleFormControlTextarea1">Description</label>
+                      <textarea class="form-control" rows="3" name="description" placeholder="Write Description here..."></textarea>
+                    </div>
+                  </div>
+                </div>
+                  
+                <div class="row">
+                  <div class="col-md-6 col-lg-6 col-sm-12">
+                    <div class="form-group">
+                      <label>Start Date</label>
+                      <input id="start-date" type="text" class="form-control" name="start_date" autocomplete="off">
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 col-lg-6 col-sm-12">
+                    <div class="form-group">
+                      <label>End Date</label>
+                      <input id="end-date" type="text" class="form-control" name="end_date" autocomplete="off">
+                    </div>
+                  </div>
+                </div>
+                 
+                <div class="row">
+                  <div class="col-md-6 col-lg-6 col-sm-12">
+                    <div class="form-check">
+                      <input id="check-box" class="form-check-input" type="checkbox" value=true name="is_all_day">
+                      <label class="form-check-label">
+                        is All Day
+                      </label>
+                    </div>                    
+                  </div>
+                </div>
+                  
+                <div class="row">
+                  <div class="col-md-6 col-lg-6 col-sm-12">
+                    <div class="form-group">
+                      <label>Email</label>
+                      <input type="email" class="form-control" value="akadam@verticalfox.com" name="email">
+                    </div>
+                    
+                    <input type="submit" class="btn btn-primary" name="submit">
+                  </div>
+                </div>     
+            </form>
+            <div class="col col-md-6 col-lg-6">
+                <div id="calender">
+
+                  </div>
+            </div>
+            
+            </div>
+</div>
+

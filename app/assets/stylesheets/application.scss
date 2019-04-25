@@ -1,0 +1,22 @@
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+@import "home";
+@import "jquery.ui.all";
+@import "leave";
+@import "fullcalendar";
+
+@media (min-width: 992px){
+.navbar-expand-lg {
+        justify-content: unset;
+    }
+}
+
+.collapse{
+    justify-content: flex-end;
+}
+
+.dropdown-menu {
+    left: unset;
+    right: 0;
+}

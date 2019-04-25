@@ -1,0 +1,64 @@
+<div class="container-fluid">
+    <br>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Current Applied Leave</li>
+        </ol>
+    </nav>
+    <div style="display: flex; flex-wrap: wrap;">
+    <% @leave_pending.each do |pending| %>
+    <div class="card" style="width: 18rem; margin: 10px;">
+            <div class="card-body">
+                <h5 class="card-title"><%= pending.subject %></h5>
+
+                <h6 class="card-subtitle mb-2 text-muted"></h6>
+                <p class="card-text">
+                    <%= pending.description %>
+                    <br>
+                    <h6><%= pending.start_date.strftime("%A, %d %B %Y") %></h6>
+                    <h6><%= pending.end_date.strftime("%A, %d %B %Y") %></h6>
+                </p>
+               <form class="leaveCancelForm">
+                    <input class="token" type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                   <button type="submit" class="btn btn-danger" data-id="<%= pending.id %>" data-type="cancel">Cancel</button>
+               </form>
+                <hr />
+            </div>
+            
+        </div>
+        <% end %>
+    </div>
+    <br>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">History</li>
+        </ol>
+    </nav>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Leave Type</th>
+                <th>Subject</th>
+                <th>Description</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @leave.each do |leave| %>
+            
+            
+            <tr>
+                <td><%= leave.leave_type %></td>
+                <td><%= leave.subject %></td>
+                <td><%= leave.description %></td>
+                <td><%= leave.start_date.strftime("%A, %d %B %Y") %></td>
+                <td><%= leave.end_date.strftime("%A, %d %B %Y") %></td>
+                <td><%= leave.status.humanize %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
