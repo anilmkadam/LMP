@@ -1,4 +1,4 @@
-# LMS Leave Management System
+# LMS Leave Management System :chart_with_upwards_trend: :spiral_calendar:
 
 This is an leave management portal for verticalfox.
 
