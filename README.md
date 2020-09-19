@@ -25,3 +25,4 @@ The "Leave Management System" has been developed to override the problems prevai
 * HTML, CSS, Bootstrap
 * Javascript, AJAX, jQuery
 * PostgresSQL (Database)
+ 
